@@ -26,8 +26,8 @@ Filtering is based on the bots' user agents provided by https://github.com/monpe
 ### Dependencies
 
 First install the following dependencies:
-- jq - commandline JSON processor (https://stedolan.github.io/jq)
-- Dependencies of GoAccess (https://github.com/allinurl/goaccess#distribution-packages): ncurses-devel, geoip, geoip2, ssl dev
+- [jq](https://stedolan.github.io/jq) commandline JSON processor
+- [GoAccess dependencies](https://github.com/allinurl/goaccess#distribution-packages): ncurses-devel, geoip, geoip2, ssl dev
 
 For CentOS/Fedora this should look like this:
 ```bash
