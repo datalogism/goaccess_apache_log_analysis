@@ -20,10 +20,10 @@ cat $logfile | grep --file=$useragents_list --invert-match > $logfile_nobot
 echo "Filtered log contains $(wc -l $logfile_nobot | cut -d' ' -f1) lines."
 
 # Generate goaccess report
-REPORT_OUTPUT=$PUBLIC_HTML_DIR/apache_report_nobot.html
+REPORT_OUTPUT=$PUBLIC_HTML_DIR/$HTML_REPORT_NOBOT
 $GOACCESS_BIN \
   $logfile_nobot \
   --log-format=COMBINED \
   --output $REPORT_OUTPUT
 
-echo "Check report at $PUBLIC_HTML_URL/apache_report_nobot.html."
+echo "Check report at $PUBLIC_HTML_URL/$HTML_REPORT_NOBOT."
