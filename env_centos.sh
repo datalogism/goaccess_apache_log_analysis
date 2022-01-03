@@ -19,4 +19,4 @@ export GOACCESS_BIN=/usr/local/bin/goaccess
 
 # GoAccess database
 export GOACCESS_DBPATH=/tmp/goaccess
-export GOACCESS_DBPATH_NOROBOT=/tmp/goaccess_norobot
+export GOACCESS_DBPATH_NOBOT=/tmp/goaccess_nobot

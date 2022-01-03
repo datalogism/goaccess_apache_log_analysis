@@ -27,7 +27,7 @@ REPORT_OUTPUT=$PUBLIC_HTML_DIR/$HTML_REPORT_NOBOT
 $GOACCESS_BIN \
   $logfile_nobot \
   --log-format=COMBINED \
-  --db-path $GOACCESS_DBPATH_NOROBOT \
+  --db-path $GOACCESS_DBPATH_NOBOT \
   --persist \
   --output $REPORT_OUTPUT
 
