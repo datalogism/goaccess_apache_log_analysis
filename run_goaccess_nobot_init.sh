@@ -1,7 +1,7 @@
 #!/bin/bash
 
 . env.sh
-mkdir -p $GOACCESS_DBPATH_NOROBOT
+mkdir -p $GOACCESS_DBPATH_NOBOT
 
 
 # Get the list of bots' user agents..."
