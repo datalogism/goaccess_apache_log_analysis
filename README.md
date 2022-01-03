@@ -12,22 +12,22 @@ Create file `env.sh` by copying or making a symbolic link to one of them and upd
 
 Two sets of scripts are provided:
 - `run_goaccess_init.sh` and `run_goaccess.sh`: analyze the Apache logs without further processing
-- `run_goaccess_norobot_init.sh` and `run_goaccess_norobot.sh`: : analyze the Apache after filtering out the queries issued by well-known web crawlers (bots).
+- `run_goaccess_nobot_init.sh` and `run_goaccess_nobot.sh`: : analyze the Apache after filtering out the queries issued by well-known web crawlers (bots).
 
 Web crawlers filtering is based on the bots' user agents provided by https://github.com/monperrus/crawler-user-agents.
 
 
-### `run_goaccess_init.sh` and `run_goaccess_norobot_init.sh`
+### `run_goaccess_init.sh` and `run_goaccess_nobot_init.sh`
 
 They analyze the log **history** (typically files `/var/log/httpd/access_log-*` on a CentOS, `/var/log/apache/access.log*` on an Ubuntu server) and persist the result in a new database.
 
 They should be run only once, or whenever you want to re-generate the GoAccess database.
 
-### `run_goaccess.sh` and `run_goaccess_norobot.sh`
+### `run_goaccess.sh` and `run_goaccess_nobot.sh`
 
 These process the current log file (typically files `/var/log/httpd/access_log` on a CentOS, `/var/log/apache/access.log` on an Ubuntu server) and run GoAccess to append the analysis to previously analyzed logs.
 
-`run_goaccess_norobot.sh` first removes from the log file all the lines corresponding to queries made by web crawlers (bots).
+`run_goaccess_nobot.sh` first removes from the log file all the lines corresponding to queries made by web crawlers (bots).
 
 Typically, they should be run once a day using a cron job.
 Adapt the run frequency depending on the Apache log management policy (usually enforced by logrotate).
