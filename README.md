@@ -1,27 +1,39 @@
 # Analyze Apache logs with GoAccess
 
-This repo provides simple tools that use the [GoAccess](https://goaccess.io/) web log analyzer to generate reports on the traffic of an Apache server, either on CentOS or Ubuntu. It can be adapted easily to other Linux distributions.
+This repo provides simple tools that use the [GoAccess](https://goaccess.io/) web log analyzer to generate reports on the traffic of an Apache server.
+
+It comes with configurations for common installations of Apache on CentOS and Ubuntu. It can be adapted easily to other Linux distributions.
 
 
 ## Scripts
 
-### run_goaccess.sh
+Two environment files are provided for common Apache deployement paths: `env_centos.sh` or `env_ubuntu.sh`.
+Create file `env.sh` by copying or making a symbolic link to one of them and update the variables to reflect your environment specificities.
 
-It first analyzes the log history (typically files `/var/log/httpd/access_log-*` on a CentOS, `/var/log/apache/access.log*` on an Ubuntu server) and persists the result.
+Two sets of scripts are provided:
+- `run_goaccess_init.sh` and `run_goaccess.sh`: analyze the Apache logs without further processing
+- `run_goaccess_norobot_init.sh` and `run_goaccess_norobot.sh`: : analyze the Apache after filtering out the queries issued by well-known web crawlers (bots).
 
-Then, it appends the current log file and runs GoAccess in on-the-flow daemon mode.
-
-For the webpage to be updated dynamically, GoAccess opens a WebSocket server on port 7890. Therefore, you may need to configure your firewall to allow port 7890 to be accessed from outside your seerver.
-
-### run_goaccess_nobot.sh
-
-Builds a static report (no on-the-flow mode) after removing from the log history 
-all the lines corresponding to queries made by web crawlers (bots).
-
-Filtering is based on the bots' user agents provided by https://github.com/monperrus/crawler-user-agents.
+Web crawlers filtering is based on the bots' user agents provided by https://github.com/monperrus/crawler-user-agents.
 
 
-## Installation 
+### `run_goaccess_init.sh` and `run_goaccess_norobot_init.sh`
+
+They analyze the log **history** (typically files `/var/log/httpd/access_log-*` on a CentOS, `/var/log/apache/access.log*` on an Ubuntu server) and persist the result in a new database.
+
+They should be run only once, or whenever you want to re-generate the GoAccess database.
+
+### `run_goaccess.sh` and `run_goaccess_norobot.sh`
+
+These process the current log file (typically files `/var/log/httpd/access_log` on a CentOS, `/var/log/apache/access.log` on an Ubuntu server) and run GoAccess to append the analysis to previously analyzed logs.
+
+`run_goaccess_norobot.sh` first removes from the log file all the lines corresponding to queries made by web crawlers (bots).
+
+Typically, they should be run once a day using a cron job.
+Adapt the run frequency depending on the Apache log management policy (usually enforced by logrotate).
+
+
+## Installation and usage
 
 ### Dependencies
 
@@ -45,6 +57,6 @@ It should be possible to have it work with the Docker distribution although adju
 
 ### Adapt to your environment
 
-Simply update the variables in the env_*.sh file that most closely maches your OS.
+Create file `env.sh` by copying or making a symbolic link to the one closer to your environment: `env_centos.sh` or `env_ubuntu.sh`
 
-
+And simply update the variables according to the in accordance with your environment.
