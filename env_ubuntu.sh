@@ -11,7 +11,7 @@ export HTML_REPORT=apache_report.html
 export HTML_REPORT_NOBOT=apache_report_nobot.html
 
 # Apache logs
-export APACHE_HISTORY_LOGS=/var/log/apache2/unziped/access.log.*
+export APACHE_HISTORY_LOGS=/var/log/apache2/access.log.*
 export APACHE_CURRENT_LOG=/var/log/apache2/access.log
 
 # GoAccess binary
