@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. env.sh
+. $PWD/env.sh
 mkdir -p $GOACCESS_DBPATH_NOBOT
 
 

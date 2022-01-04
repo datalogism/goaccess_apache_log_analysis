@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. env.sh
+. $PWD/env.sh
 mkdir -p $GOACCESS_DBPATH
 
 REPORT_OUTPUT=$PUBLIC_HTML_DIR/$HTML_REPORT
