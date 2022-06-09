@@ -53,6 +53,15 @@ apt install jq libncurses5-dev libncursesw5-dev libgeoip-dev libmaxminddb-dev li
 
 Then install [GoAccess](https://github.com/allinurl/goaccess) following the install procedure **from the source code**. Do not install it with apt-get (Debians) or yum (Redhats) as those versions are not up to date (at the time of writing).
 
+/!\ If you thought to have long text in your log (as for example SPARQL queries) : configure it with  *--with-getline* option 
+```
+$ git clone https://github.com/allinurl/goaccess.git
+$ cd goaccess
+$ autoreconf -fiv
+$ ./configure --enable-utf8 --enable-geoip=mmdb
+$ make
+# make install
+```
 It should be possible to have it work with the Docker distribution although adjusting shared volumes is quite tricky.
 
 ### Adapt to your environment
